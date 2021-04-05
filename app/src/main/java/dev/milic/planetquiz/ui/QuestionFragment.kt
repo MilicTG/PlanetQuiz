@@ -4,19 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
+import androidx.navigation.Navigation
 import dev.milic.planetquiz.R
 import dev.milic.planetquiz.databinding.FragmentQuestionsBinding
+import dev.milic.planetquiz.model.AnswerParcelable
 
 class QuestionFragment : Fragment() {
 
     private lateinit var binding: FragmentQuestionsBinding
-
-    private val answerOne = listOf("JUPITER", R.string.question_one)
-    private val answerTwo = listOf("SATURN", R.string.question_two)
-    private val answerThree = listOf("URANUS", R.string.question_three)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,29 +32,41 @@ class QuestionFragment : Fragment() {
     }
 
     private fun startFirstQuestion() {
-        val bundle = bundleOf("Answer" to answerOne)
+        val actionDetail = QuestionFragmentDirections.actionQuestionFragmentToAnswersFragment()
+        actionDetail.answerParce = AnswerParcelable(
+            getString(R.string.question_one),
+            "JUPITER",
+            getString(R.string.jupiter_answer)
+        )
 
         binding.btnQuestionOne.setOnClickListener {
-            view?.findNavController()
-                ?.navigate(R.id.action_questionFragment_to_answersFragment, bundle)
+            Navigation.findNavController(binding.root).navigate(actionDetail)
         }
     }
 
     private fun startSecondQuestion() {
-        val bundle = bundleOf("Answer" to answerTwo)
+        val actionDetail = QuestionFragmentDirections.actionQuestionFragmentToAnswersFragment()
+        actionDetail.answerParce = AnswerParcelable(
+            getString(R.string.question_two),
+            "SATURN",
+            getString(R.string.saturn_answer)
+        )
 
         binding.btnQuestionTwo.setOnClickListener {
-            view?.findNavController()
-                ?.navigate(R.id.action_questionFragment_to_answersFragment, bundle)
+            Navigation.findNavController(binding.root).navigate(actionDetail)
         }
     }
 
     private fun startThirdQuestion() {
-        val bundle = bundleOf("Answer" to answerThree)
+        val actionDetail = QuestionFragmentDirections.actionQuestionFragmentToAnswersFragment()
+        actionDetail.answerParce = AnswerParcelable(
+            getString(R.string.question_three),
+            "URANUS",
+            getString(R.string.uranus_answer)
+        )
 
         binding.btnQuestionThree.setOnClickListener {
-            view?.findNavController()
-                ?.navigate(R.id.action_questionFragment_to_answersFragment, bundle)
+            Navigation.findNavController(binding.root).navigate(actionDetail)
         }
     }
 }

@@ -17,6 +17,11 @@
         <action
             android:id="@+id/action_answersFragment_to_resultFragment"
             app:destination="@id/resultFragment" />
+        <argument
+            android:name="answerParce"
+            app:argType="dev.milic.planetquiz.model.AnswerParcelable"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/resultFragment"
@@ -25,5 +30,10 @@
         <action
             android:id="@+id/action_resultFragment_to_questionFragment"
             app:destination="@id/questionFragment" />
+        <argument
+            android:name="resultParce"
+            app:argType="dev.milic.planetquiz.model.ResultParcelable"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 </navigation>
